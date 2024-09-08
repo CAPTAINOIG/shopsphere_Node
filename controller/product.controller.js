@@ -1,14 +1,60 @@
 const express = require ('express');
 const data = require('../Data/categories')
+const Product = require('../model/product.model');
 
 
-const getAllProducts = async (req, res)=>{
+const getAllProducts = async (req, res) => {
     try {
-        res.status(200).json(data);
+        console.log(data);
+        
+        res.status(200).json(data); // Return the data directly
     } catch (error) {
         res.status(500).json({ message: "Something went wrong", error });
     }
-}
+};
+
+// const postProductDetails = async (req, res) => {
+//     const newData = { name, price, promoPrice, description, category, discountPercentage, images } = req.body;
+//     // console.log(newData);
+    
+//     try {
+//         // Create and save the product to the database
+//         const newProduct = new Product({
+//             name,
+//             price,
+//             promoPrice,
+//             description,
+//             category,
+//             discountPercentage,
+//             images
+//         });
+//         console.log(newProduct);
+        
+//         await newProduct.save(); // Save the product to the database
+
+//         res.status(201).json(newProduct);
+//     } catch (error) {
+//         console.log(error);
+        
+//         res.status(500).json({ message: "Failed to save product", error });
+//     }
+// };
+
+// Get product details by ID for the new page
+// const getProductDetailsById = async (req, res) => {
+//     const { id } = req.params;
+
+//     try {
+//         const product = await Product.findById(id); // Fetch the product by ID
+//         if (!product) {
+//             return res.status(404).json({ message: "Product not found" });
+//         }
+
+//         res.status(200).json(product);
+//     } catch (error) {
+//         res.status(500).json({ message: "Failed to fetch product", error });
+//     }
+// };
 
 // const getProductById = (req, res) => {
 //     const productId = req.params.id;
@@ -106,4 +152,4 @@ const getProductByPrice = (req, res) => {
 
 
 
-module.exports = {getAllProducts, getProductByCategory, getProductByName, getProductByPrice, getProductByCategoryOrSection};
+module.exports = {getAllProducts,  getProductByCategory, getProductByName, getProductByPrice, getProductByCategoryOrSection};

@@ -1,5 +1,6 @@
 const data = [
    {
+      id: 1,
       name: "Samsung Galaxy S21",
       price: 799,
       promoPrice: 699,
@@ -15,6 +16,7 @@ const data = [
       }
    },
    {
+      id: 2,
       name: "iPhone 14 Pro",
       price: 999,
       promoPrice: 899,
@@ -30,6 +32,7 @@ const data = [
       }
    },
    {
+      id: 3,
       name: "Dell XPS 13",
       price: 1299,
       promoPrice: 1199,
@@ -356,7 +359,7 @@ const data = [
       promoPrice: 26.10, // 10% discount
       discountPercentage: 10,
       description: "A comfortable and stylish T-shirt for men, available in various colors. Made from soft, breathable cotton, this T-shirt is perfect for daily wear. Whether you're lounging at home, running errands, or hitting the gym, this versatile tee offers a great fit and lasting comfort. Ideal for layering or wearing on its own.",
-      category: "Clothing",
+      category: "Tops",
       availableQuantity: 10,
       images: {
         front: "https://images.unsplash.com/photo-1516082669438-2d2bb5082626?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -575,7 +578,7 @@ const data = [
       promoPrice: 30, // 25% off
       discountPercentage: 25,
       description: "A cozy plaid shirt with a relaxed fit, perfect for layering over a t-shirt or under a jacket. The soft cotton material ensures comfort, while the timeless plaid pattern makes it a wardrobe staple for both casual and semi-formal occasions. Great for fall and winter weather.",
-      category: "Shirts",
+      category: "Tops",
       availableQuantity: 35,
       images: {
         front: "https://images.unsplash.com/photo-1657878336522-d3d697f89409?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE3fHx8ZW58MHx8fHx8",
@@ -590,7 +593,7 @@ const data = [
       promoPrice: 41.25, // 25% off
       discountPercentage: 25,
       description: "An elegant sleeveless top crafted from luxurious silk. This versatile piece is perfect for both casual outings and formal events. The smooth texture and lightweight fabric provide ultimate comfort, while the subtle sheen of the silk adds sophistication to any outfit. Pair it with a skirt or trousers for a chic look.",
-      category: "Shirts",
+      category: "Tops",
       availableQuantity: 25,
       images: {
         front: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fHw%3D",
