@@ -4,7 +4,8 @@ const dotenv = require ('dotenv');
 const jwt = require("jsonwebtoken")
 const nodemailer = require ('nodemailer')
 const mongoose = require ('mongoose');
-const bcryptjs = require('bcryptjs')
+const bcryptjs = require('bcryptjs');
+const verifyToken = require('../middleware/verifyToken');
 
 
 
@@ -24,7 +25,10 @@ const transporter = nodemailer.createTransport({
   auth: {
     user: USERMAIL,
     pass: pass
-  }
+  },
+  tls: {
+    rejectUnauthorized: false, // this ignores the invalid certificate
+  },
 })
 
 const Captain =
@@ -47,50 +51,50 @@ const Captain =
       }
     })
   }
-const register = async (req, res) => {
-    try {
-        // Extract the user details from the request body
-        const { firstName, email, password, phone } = req.body;
-        // Create a new User instance
-        const newUser = new User({firstName, email, password, phone});
-        console.log(newUser);
-        
-        // Save the new user to the database
-        await newUser.save();
-        // Find the saved user based on the email (or any other unique field)
-        const savedUser = await User.findOne({ email });
-        // Return the saved user details as a response
-        res.status(201).json({user: savedUser, status: true, message: 'user Signed up successfully'});
-        // Nodemailer
+  const register = (req, res) => {
+    let form = new User(req.body);
+    const { firstname, lastname, email, password } = req.body;
+    const newUser = new User({
+      firstname,
+      lastname,
+      email,
+      password,
+    })
+    console.log(newUser);
+    newUser.save()
+      .then((result) => {
+        console.log(result);
+        res.status(200).json({ status: true, message: "User signed up successfully", result });
+        console.log('✔ user found', email);
         const mailOptions = {
           from: process.env.USER,
           to: email,
-          subject: "Welcome to Captain College",
+          subject: "Welcome to Shoppinsphere",
           html: `
-            <div style="background-color: rgb(4,48,64); padding: 20px; color: rgb(179,148,113); border-radius: 5px">
-              <img src="${Captain}" alt="Captain College Logo" style="max-width: 150px; height: 130px; margin-bottom: 20px; margin-left: 300px;">
+            <div style="background-color: rgb(4,48,64); padding: 20px; color: rgb(179,14,100); border-radius: 5px">
+              <img src="${Captain}" alt="Shoppinsphere Logo" style="max-width: 150px; height: 130px; margin-bottom: 20px; margin-left: 300px;">
               <div style="text-align: center;">
-              <p style="font-size: 18px;">Hello, ${firstName}!</p>
-              <p style="font-size: 16px;">Welcome to Captain E-Commerce! We're thrilled that you've chosen to register with us.</p>
+              <p style="font-size: 18px;">Hello, ${firstname}!</p>
+              <p style="font-size: 16px;">Welcome to Captain College! We're thrilled that you've chosen to register with us.</p>
               <p style="font-size: 16px;">If you have any questions or need assistance, feel free to reach out @abdullahisamsudeen@gmail.com.</p>
-              <p style="font-size: 16px;">Thank you for patronizing us us.</p>
+              <p style="font-size: 16px;">Thank you for joining us.</p>
               <p style="font-size: 16px;">Best regards,</p>
-              <p style="font-size: 16px;">The Captain E-Commerce</p>
+              <p style="font-size: 16px;">The Shoppinsphere Team</p>
               </div>
             </div>
           `,
         };
           return transporter.sendMail(mailOptions)
-    } 
-    catch (error) {
+      })
+      .catch((err) => {
+        console.error(err);
         if (err.code === 11000) {
-            res.status(409).json({ status: false, message: "Duplicate user found" });
-          } else {
-            res.status(400).json({ status: false, message: "Fill in appropriately" });
-          }
-        res.status(500).json({ message: 'Error creating user', error });
-    }
-};
+          res.status(409).json({ status: false, message: "Duplicate user found" });
+        } else {
+          res.status(400).json({ status: false, message: "Fill in appropriately" });
+        }
+      });
+  }
 
 
 const userLogin = async (req, res) => {
@@ -107,7 +111,7 @@ const userLogin = async (req, res) => {
         } else {
           if (same) {
             const token = jwt.sign({ email }, secrete, { expiresIn: "10h" });
-            console.log(token);
+            // console.log(token);
             res.status(200).json({ message: "User signed in successfully", status: true, token, user });
           } else {
             res.status(401).json({ message: "Wrong password, please type the correct password", status: false });
@@ -123,35 +127,56 @@ const userLogin = async (req, res) => {
   }
 }
 
-const getDashboard = (req, res) => {
-  try {
-    const token = req.headers.authorization.split(" ")[1];
-    const secret = process.env.SECRET;
+// const getDashboard = (req, res) => {
+//   try {
+//     const token = req.headers.authorization.split(" ")[1];
+//     const secret = process.env.SECRET;
 
-    jwt.verify(token, secret, async (err, result) => {
-      if (err) {
-        console.error(err);
-        return res.status(401).json({ status: false, message: "Unauthorized access" });
-      } else {
-        try {
-          const userDetail = await userModel.findOne({ email: result.email });
-          if (userDetail) {
-            res.json({ status: true, message: "Welcome to the Dashboard", userDetail });
-            console.log(result);
-          } else {
-            res.status(404).json({ status: false, message: "User not found" });
-          }
-        } catch (error) {
-          console.error(error);
-          res.status(500).json({ status: false, message: "Server error" });
-        }
+//     jwt.verify(token, secret, async (err, result) => {
+//       if (err) {
+//         console.error(err);
+//         return res.status(401).json({ status: false, message: "Unauthorized access" });
+//       } else {
+//         try {
+//           const userDetail = await userModel.findOne({ email: result.email });
+//           if (userDetail) {
+//             res.json({ status: true, message: "Welcome to the Dashboard", userDetail });
+//             console.log(result);
+//           } else {
+//             res.status(404).json({ status: false, message: "User not found" });
+//           }
+//         } catch (error) {
+//           console.error(error);
+//           res.status(500).json({ status: false, message: "Server error" });
+//         }
+//       }
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(400).json({ status: false, message: "Bad request" });
+//   }
+// };
+
+const getDashboard = async (req, res) => {
+  try {
+      // User details are already populated in req.user by the middleware
+      const userId = req.user.id; // Get user ID from the authenticated request
+
+      // Fetch user details from the database
+      const userDetail = await userModel.findById(userId);
+      if (!userDetail) {
+          return res.status(404).json({ status: false, message: "User not found" });
       }
-    });
+
+      res.json({ status: true, message: "Welcome to the Dashboard", userDetail });
   } catch (error) {
-    console.error(error);
-    res.status(400).json({ status: false, message: "Bad request" });
+      console.error(error);
+      res.status(500).json({ status: false, message: "Server error" });
   }
 };
+
+
+
 
 const password = (req, res) => {
   const { email } = req.body;

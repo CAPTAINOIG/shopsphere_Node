@@ -48,6 +48,7 @@ const data = [
       }
    },
    {
+      id: 4,
       name: "Sony WH-1000XM4",
       price: 349,
       promoPrice: 299,
@@ -63,6 +64,7 @@ const data = [
       }
    },
    {
+      id: 5,
       name: "GoPro HERO10",
       price: 499,
       promoPrice: 449,
@@ -78,6 +80,7 @@ const data = [
       }
    },
    {
+      id: 6,
       name: "Bose QuietComfort 35 II",
       price: 299,
       promoPrice: 259,
@@ -93,6 +96,7 @@ const data = [
       }
    },
    {
+      id: 7,
       name: "Microsoft Surface Pro 8",
       price: 1099,
       promoPrice: 999,
@@ -108,6 +112,7 @@ const data = [
       }
    },
    {
+      id: 8,
       name: "Apple Watch Series 7",
       price: 399,
       promoPrice: 359,
@@ -123,6 +128,7 @@ const data = [
       }
    },
    {
+      id: 9,
       name: "Google Pixel 6",
       price: 599,
       promoPrice: 549,
@@ -138,6 +144,7 @@ const data = [
       }
    },
    {
+      id: 10,
       name: "HP Spectre x360",
       price: 1399,
       promoPrice: 1299,
@@ -153,6 +160,7 @@ const data = [
       }
    },
    {
+      id: 11,
       name: "Men's Formal Dress",
       price: 199,
       promoPrice: 179,
@@ -168,6 +176,7 @@ const data = [
       }
    },
    {
+      id: 12,
       name: "Women's Evening Gown",
       price: 299,
       promoPrice: 269,
@@ -184,6 +193,7 @@ const data = [
    },
 
    {
+      id: 3,
       name: "Nikon Z50",
       price: 859,
       promoPrice: 799,
@@ -201,6 +211,7 @@ const data = [
       }
    },
    {
+      id: 14,
       name: "ASUS ROG Zephyrus G14",
       price: 1499,
       promoPrice: 1399,
@@ -216,6 +227,7 @@ const data = [
       }
    },
    {
+      id: 15,
       name: "Men's Casual Shirt",
       price: 59,
       promoPrice: 49,
@@ -230,7 +242,7 @@ const data = [
          additional: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fHw%3D"
       }
    },
-   {
+   {id: 16,
       name: "Women's Summer Dress",
       price: 89,
       promoPrice: 79,
@@ -247,6 +259,7 @@ const data = [
    },
 
    {
+      id: 17,
       name: "Samsung Galaxy S21",
       price: 799,
       promoPrice: 699,
@@ -262,6 +275,7 @@ const data = [
       }
    },
    {
+      id: 18,
       name: "Apple iPhone 13",
       price: 999,
       promoPrice: 899,
@@ -278,6 +292,7 @@ const data = [
       }
    },
    {
+      id: 19,
       name: "Sony WH-1000XM4",
       price: 349,
       promoPrice: 299,
@@ -293,6 +308,7 @@ const data = [
       }
    },
    {
+      id: 20,
       name: "MacBook Pro 14-inch",
       price: 1999,
       promoPrice: 1799,
@@ -308,6 +324,7 @@ const data = [
       }
    },
    {
+      id: 21,
       name: "Dell XPS 13",
       price: 999,
       promoPrice: 899,
@@ -324,6 +341,7 @@ const data = [
    },
 
    {
+      id: 22,
       name: "Men's Formal Suit",
       price: 299,
       promoPrice: 269.10, // 10% discount
@@ -339,6 +357,7 @@ const data = [
       }
     },
     {
+      id: 23,
       name: "Men's Denim Jacket",
       price: 89,
       promoPrice: 80.10, // 10% discount
@@ -354,6 +373,7 @@ const data = [
       }
     },
     {
+      id: 24,
       name: "Men's T-Shirt",
       price: 29,
       promoPrice: 26.10, // 10% discount
@@ -369,6 +389,7 @@ const data = [
       }
     },
     {
+      id: 25,
       name: "Women's Evening Dress",
       price: 199,
       promoPrice: 179.10,
@@ -386,6 +407,7 @@ const data = [
 
 
     {
+      id: 26,
       name: "Women's Casual Blouse",
       price: 49,
       description: "A versatile casual blouse for women, perfect for everyday wear. This lightweight blouse is designed with a relaxed fit, making it a stylish and comfortable option for a day out or casual office wear. Its breathable fabric ensures comfort in warm weather, while the modern cut enhances your overall look. Ideal for pairing with jeans, skirts, or trousers for a chic appearance.",
@@ -402,10 +424,11 @@ const data = [
   },
   
   {
+   id: 27,
       name: "Sony PlayStation 5",
       price: 499,
       description: "The next-generation PlayStation console with 4K gaming. Experience ultra-fast loading times, immersive 3D audio, and a library of visually stunning games. The PlayStation 5 offers seamless integration with your favorite media apps, ensuring that you can stream, watch, and play all from one place. With its sleek design and powerful hardware, this console is built for serious gaming enthusiasts.",
-      category: "Gaming Consoles",
+      category: "Cameras",
       availableQuantity: 10,
       discountPercentage: 15,
       promoPrice: 424.15,
@@ -418,10 +441,11 @@ const data = [
   },
   
   {
+   id: 28,
       name: "Men's Slim Fit Jeans",
       price: 39,
       description: "Comfortable slim fit jeans for men, perfect for casual wear. Made from high-quality denim, these jeans provide a sleek and flattering fit that works well for both casual and semi-formal occasions. The modern cut ensures a sharp look without sacrificing comfort. Pair these jeans with a t-shirt or button-down shirt for a versatile and stylish outfit.",
-      category: "Clothing",
+      category: "Cameras",
       availableQuantity: 10,
       discountPercentage: 5,
       promoPrice: 37.05,
@@ -434,6 +458,7 @@ const data = [
   },
   
   {
+   id: 29,
       name: "Men's Relaxed Fit Jeans",
       price: 49,
       description: "Relaxed fit jeans for men with a classic style and comfortable feel. These jeans offer extra room in the thigh and seat area, making them perfect for all-day wear. The durable denim ensures longevity, while the timeless design allows for easy pairing with casual shirts or jackets. Ideal for a laid-back look or outdoor activities.",
@@ -450,6 +475,7 @@ const data = [
    },
 
    {
+      id: 30,
       name: "Women's Skinny Jeans",
       price: 39,
       promoPrice: 29, // 25% discount
@@ -466,6 +492,7 @@ const data = [
       }
    },
    {
+      id: 31,
       name: "Women's Bootcut Jeans",
       price: 59,
       promoPrice: 44, // 25% discount
@@ -481,6 +508,7 @@ const data = [
       }
    },
    {
+      id: 32,
       name: "Skechers Men's Running Shoes",
       price: 99,
       promoPrice: 79, // 20% discount
@@ -496,6 +524,7 @@ const data = [
       }
    },
    {
+      id: 33,
       name: "Skechers Women's Walking Shoes",
       price: 89,
       promoPrice: 71, // 20% discount
@@ -512,6 +541,7 @@ const data = [
    },
 
    {
+      id: 34,
       name: "Classic White T-Shirt",
       price: 25,
       description: "A timeless white t-shirt made from 100% organic cotton. Soft, breathable, and versatile, this shirt is perfect for any occasion, whether you're dressing up or keeping it casual. With a tailored fit and durable fabric, it’s designed to last and maintain its shape after every wash.",
@@ -527,6 +557,7 @@ const data = [
       }
     },
     {
+      id: 35,
       name: "Denim Button-Up Shirt",
       price: 45,
       description: "A stylish denim button-up shirt perfect for casual outings or smart-casual looks. Crafted from premium quality denim, this shirt offers a comfortable fit and durable wear. The classic button-up design is enhanced by a tailored cut, giving you a sleek and modern look.",
@@ -542,6 +573,7 @@ const data = [
       }
     },
     {
+      id: 36,
       name: "Striped Long Sleeve Top",
       price: 30,
       description: "A comfortable long sleeve top with black and white stripes. Made from soft and stretchy fabric, it’s perfect for layering during cooler months or wearing alone for a stylish look. The classic striped design pairs well with jeans or skirts for versatile outfits.",
@@ -557,6 +589,7 @@ const data = [
       }
     },
     {
+      id: 37,
       name: "Floral Print Blouse",
       price: 35,
       description: "A beautiful floral print blouse perfect for summer days. Featuring a lightweight and breathable fabric, it keeps you cool and stylish. The vibrant floral design adds a fresh, feminine touch to any outfit, making it ideal for outdoor events or casual wear.",
@@ -573,6 +606,7 @@ const data = [
     },
 
     {
+      id: 38,
       name: "Casual Plaid Shirt",
       price: 40,
       promoPrice: 30, // 25% off
@@ -588,6 +622,7 @@ const data = [
       }
     },
     {
+      id: 39,
       name: "Silk Sleeveless Top",
       price: 55,
       promoPrice: 41.25, // 25% off
@@ -603,6 +638,7 @@ const data = [
       }
     },
     {
+      id: 40,
       name: "Oversized Hoodie",
       price: 60,
       promoPrice: 48, // 20% off

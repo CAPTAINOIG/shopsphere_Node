@@ -17,10 +17,14 @@ require('./connection/mongoose.connection');
 const productRoutes = require('./routes/product.route');
 const newsLetter = require('./routes/subscription.route');
 const user = require('./routes/user.route');
+const cart = require('./routes/cart.route');
+
 
 app.use('/', productRoutes); 
 app.use('/', newsLetter)
 app.use('/', user);
+app.use('/', cart);
+
 // app.use('/api', (req, res) =>{
 //     res.send('hello')
 //     console.log('you are welcome');  

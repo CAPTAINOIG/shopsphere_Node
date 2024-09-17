@@ -5,13 +5,14 @@ const Product = require('../model/product.model');
 
 const getAllProducts = async (req, res) => {
     try {
-        console.log(data);
+        // console.log(data);
         
         res.status(200).json(data); // Return the data directly
     } catch (error) {
         res.status(500).json({ message: "Something went wrong", error });
     }
 };
+
 
 // const postProductDetails = async (req, res) => {
 //     const newData = { name, price, promoPrice, description, category, discountPercentage, images } = req.body;

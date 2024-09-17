@@ -1,18 +1,80 @@
 const express = require('express');
 const Cart = require('../model/cart.model');
 const Product = require('../model/product.model');
-const data = require('../Data/categories'); 
+const User = require('../model/user.model');
+const Order = require('../model/order.model');
+const data = require('../Data/categories');
+const verifyToken = require('../middleware/verifyToken');
+
+
+const checkout = async (req, res) => {
+    const { user, cart } = req.body;
+    console.log(user);
+    console.log( cart);
+
+    try {
+        // Step 1: Find or create the user in the database
+        let existingUser = await User.findOne({ email: user.email });
+        if (!existingUser) {
+            existingUser = new User({
+                firstname: user.firstname,
+                lastname: user.lastname,
+                email: user.email,
+                password: user.password,
+            });
+            await existingUser.save();
+        }
+        // Step 2: Calculate the total amount for the order
+        const totalAmount = cart.reduce((sum, item) => sum + item.price * item.cartQuantity, 0);
+        console.log(totalAmount);
+        // Step 3: Create a new order and save it to the database
+        const newOrder = new Order({
+            user: existingUser._id,
+            cart: cart,
+            totalAmount: totalAmount
+        });
+        await newOrder.save();
+        res.status(201).json({ message: 'Order processed successfully', order: newOrder });
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'An error occurred', error });
+    }
+}
 
 const addToCart = async (req, res) => {
     const { userId, productId, quantity } = req.body;
-    try {
-        let product = data.find(prod => prod._id === productId);
-        if (!product) {
-            return res.status(404).json({ message: 'Product not found' });
-        }
 
-        if (product.availableQuantity < quantity) {
-            return res.status(400).json({ message: 'Insufficient stock' });
+    const details = new Product({ userId, productId, quantity })
+    console.log(details);
+
+    try {
+        // let product = data.find(prod => prod._id === productId);
+        // / Fetch the product from the database
+        // let product = await Product.findById(productId);
+        // if (!product) {
+        //     return res.status(404).json({ message: 'Product not found' });
+        // }
+
+        // if (product.availableQuantity < quantity) {
+        //     return res.status(400).json({ message: 'Insufficient stock' });
+        // }
+
+
+        let product = await Product.findById(productId);
+
+        if (!product) {
+            // If the product is not found, you can add some default or placeholder values instead
+            console.log('Product not found, adding with default values');
+
+            product = {
+                _id: productId,
+                name: 'Unknown Product',
+                price: 0, // Or set a default price
+                availableQuantity: 0, // No stock available
+                images: [], // No images
+                description: 'This product could not be found in the database'
+            };
         }
 
         // Proceed to add to cart
@@ -20,13 +82,13 @@ const addToCart = async (req, res) => {
         if (!cart) {
             cart = new Cart({
                 userId: userId,
-                items: [{ 
-                    productId, 
-                    name: product.name, 
-                    price: product.price, 
-                    quantity, 
+                items: [{
+                    productId,
+                    name: product.name,
+                    price: product.price,
+                    quantity,
                     images: product.images,
-                    description:product.description 
+                    description: product.description
                 }]
             });
         } else {
@@ -35,13 +97,13 @@ const addToCart = async (req, res) => {
             if (itemIndex > -1) {
                 cart.items[itemIndex].quantity += quantity;
             } else {
-                cart.items.push({ 
-                    productId, 
-                    name: product.name, 
-                    price: product.price, 
-                    quantity, 
+                cart.items.push({
+                    productId,
+                    name: product.name,
+                    price: product.price,
+                    quantity,
                     images: product.images,
-                    description:product.description 
+                    description: product.description
                 });
             }
         }
@@ -77,12 +139,12 @@ const getCart = async (req, res) => {
     }
 };
 
-const increment = async () =>{
+const increment = async () => {
     const { userId, productId } = req.body;
     try {
         let cart = await Cart.findOne({ userId: userId });
-        if(!cart){
-            return res.status(400).json({status:false, message: 'cart not found'})
+        if (!cart) {
+            return res.status(400).json({ status: false, message: 'cart not found' })
         }
         const itemIndex = cart.items.findIndex(item => item.productId.toString() === productId);
         if (itemIndex > -1) {
@@ -100,23 +162,23 @@ const increment = async () =>{
         }
     } catch (error) {
         console.log(error);
-        res.status(500).json({status: false, message: 'something went wrong'});
+        res.status(500).json({ status: false, message: 'something went wrong' });
     }
 }
 
-const decrement = async ()=>{
-    const {userId, productId} = req.body;
+const decrement = async () => {
+    const { userId, productId } = req.body;
 
     try {
-        const cart = await Cart.findOne({userId:userId})
-        if(!cart){
-            return res.status(400).json({status:false, message: 'no product was found in your cart'});
+        const cart = await Cart.findOne({ userId: userId })
+        if (!cart) {
+            return res.status(400).json({ status: false, message: 'no product was found in your cart' });
         }
         const itemIndex = cart.items.findIndex(item => item.productId.toString() === productId);
         if (itemIndex > -1) {
             cart.items[itemIndex].quantity -= 1;
-              // If the quantity reaches 0, remove the product from the cart
-              if (cart.items[itemIndex].quantity <= 0) {
+            // If the quantity reaches 0, remove the product from the cart
+            if (cart.items[itemIndex].quantity <= 0) {
                 cart.items.splice(itemIndex, 1); // Remove item from cart if quantity is 0 or less
             }
             await cart.save();
@@ -124,7 +186,7 @@ const decrement = async ()=>{
         }
     } catch (error) {
         console.log(error);
-        res.status(500).json({status: false, message: 'something went wrong'})
+        res.status(500).json({ status: false, message: 'something went wrong' })
     }
 }
 
@@ -155,4 +217,4 @@ const removeFromCart = async (req, res) => {
 };
 
 
-module.exports = { addToCart, getCart, increment, decrement, removeFromCart };
+module.exports = { addToCart, getCart, increment, decrement, removeFromCart, checkout };
