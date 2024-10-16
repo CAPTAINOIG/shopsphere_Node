@@ -16,7 +16,8 @@ const orderSchema = new mongoose.Schema({
     }
   ],
   totalAmount: { type: Number},
-  orderDate: { type: Date, default: Date.now },
+  orderDate: {type: String, default: () => new Date().toLocaleDateString()},
+  time: {type: String, default: () => new Date().toLocaleTimeString()},
 });
 
 const Order = mongoose.model('Order', orderSchema);

@@ -60,7 +60,7 @@ const Captain =
       email,
       password,
     })
-    console.log(newUser);
+    // console.log(newUser);
     newUser.save()
       .then((result) => {
         console.log(result);

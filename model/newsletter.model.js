@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 
 const newsSchema = new mongoose.Schema({
     email: {type: String, unique: true},
-    createdAt: { type: Date, default: Date.now }
+    date: {type: String, default: () => new Date().toLocaleDateString()},
+    time: {type: String, default: () => new Date().toLocaleTimeString()},
 })
 
 const Newsletter = mongoose.model('Newsletter', newsSchema)
