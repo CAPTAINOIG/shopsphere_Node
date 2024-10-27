@@ -107,6 +107,25 @@ const getProductByName = (req, res)=>{
     }
 }
 
+const returnProductById = (req, res) => {
+    const { id } = req.params;
+    const products = data.find(prod => prod.id === Number(id));
+    if (!products) {
+        return res.status(404).json({ message: 'Product not found' });
+    }
+    res.json(products);
+};
+
+const getProductById = (req, res) => {
+    const { id } = req.params;
+    console.log("Looking for product with ID:", id); 
+    const product = data.find(prod => prod.id === Number(id)); 
+    if (!product) {
+        return res.status(404).json({ message: 'Product not found' });
+    }
+    res.json(product);
+};
+
 
 const getProductByCategoryOrSection = (req, res) => {
     const { category, section } = req.params; 
@@ -153,4 +172,4 @@ const getProductByPrice = (req, res) => {
 
 
 
-module.exports = {getAllProducts,  getProductByCategory, getProductByName, getProductByPrice, getProductByCategoryOrSection};
+module.exports = {getAllProducts,  getProductByCategory, getProductByName, getProductByPrice, getProductByCategoryOrSection, returnProductById, getProductById};
