@@ -8,7 +8,7 @@ const {register, userLogin, password, resetPassword, getDashboard, newsletter} =
 router.post('/signup', register);
 router.post('/login', userLogin);
 router.post('/forgotPassword', password);
-router.post('/resetPassword', resetPassword);
+router.post('/reset', resetPassword);
 router.post('/news', newsletter);
 
 

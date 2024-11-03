@@ -7,6 +7,7 @@ const userSchema =new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
+    otp: { type: Number, default: null },
     date: {type: String, default: () => new Date().toLocaleDateString()},
     time: {type: String, default: () => new Date().toLocaleTimeString()},
 })

@@ -5,7 +5,7 @@ const {getAllProducts, getProductByCategory, getProductByName, getProductByPrice
 
 router.get('/products', getAllProducts);
 router.get('category/:category', getProductByCategory);
-router.get('/name/:name', getProductByName); // Change this
+router.get('/name/:name', getProductByName);
 router.get('/price/:price', getProductByPrice);
 router.get('/category', getProductByCategory);
 router.get('/name', getProductByName);

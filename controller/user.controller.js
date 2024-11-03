@@ -1,4 +1,4 @@
-let User = require('../model/user.model');
+let userModel = require('../model/user.model');
 let Newsletter = require('../model/newsletter.model');
 const dotenv = require ('dotenv');
 const jwt = require("jsonwebtoken")
@@ -27,7 +27,7 @@ const transporter = nodemailer.createTransport({
     pass: pass
   },
   tls: {
-    rejectUnauthorized: false, // this ignores the invalid certificate
+    rejectUnauthorized: false, 
   },
 })
 
@@ -39,7 +39,6 @@ const Captain =
     let form = new Newsletter(req.body)
     form.save()
     .then((response)=>{
-      console.log(response);
       return res.status(200).json({status: true, message: 'email submitted successfully'})
     })
     .catch((err)=> {
@@ -52,20 +51,17 @@ const Captain =
     })
   }
   const register = (req, res) => {
-    let form = new User(req.body);
+    let form = new userModel(req.body);
     const { firstname, lastname, email, password } = req.body;
-    const newUser = new User({
+    const newUser = new userModel({
       firstname,
       lastname,
       email,
       password,
     })
-    // console.log(newUser);
     newUser.save()
       .then((result) => {
-        console.log(result);
         res.status(200).json({ status: true, message: "User signed up successfully", result });
-        console.log('✔ user found', email);
         const mailOptions = {
           from: process.env.USER,
           to: email,
@@ -101,7 +97,7 @@ const userLogin = async (req, res) => {
   console.log(req.body);
   const { password, email } = req.body;
   try {
-    const user = await User.findOne({ email });
+    const user = await userModel.findOne({ email });
 
     if (user) {
       const secrete = process.env.SECRET;
@@ -127,41 +123,9 @@ const userLogin = async (req, res) => {
   }
 }
 
-// const getDashboard = (req, res) => {
-//   try {
-//     const token = req.headers.authorization.split(" ")[1];
-//     const secret = process.env.SECRET;
-
-//     jwt.verify(token, secret, async (err, result) => {
-//       if (err) {
-//         console.error(err);
-//         return res.status(401).json({ status: false, message: "Unauthorized access" });
-//       } else {
-//         try {
-//           const userDetail = await userModel.findOne({ email: result.email });
-//           if (userDetail) {
-//             res.json({ status: true, message: "Welcome to the Dashboard", userDetail });
-//             console.log(result);
-//           } else {
-//             res.status(404).json({ status: false, message: "User not found" });
-//           }
-//         } catch (error) {
-//           console.error(error);
-//           res.status(500).json({ status: false, message: "Server error" });
-//         }
-//       }
-//     });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(400).json({ status: false, message: "Bad request" });
-//   }
-// };
-
 const getDashboard = async (req, res) => {
   try {
-      // User details are already populated in req.user by the middleware
-      const userId = req.user.id; // Get user ID from the authenticated request
-
+      const userId = req.user.id; 
       // Fetch user details from the database
       const userDetail = await userModel.findById(userId);
       if (!userDetail) {
@@ -176,19 +140,16 @@ const getDashboard = async (req, res) => {
 };
 
 
-
-
 const password = (req, res) => {
   const { email } = req.body;
-  console.log(email);
   const resetToken = generating();
   const expirationDate = new Date();
-  expirationDate.setHours(expirationDate.getHours() + 24); // Token expires in 24 hours
+  expirationDate.setHours(expirationDate.getHours() + 24); 
 
   tokenStorage.set(resetToken, { email, expires: expirationDate, pin: generating() });
   console.log(email);
 
-  User.findOne({ email })
+  userModel.findOne({ email })
     .then((result) => {
       if (result === null) {
         console.log('user not found', email);
@@ -200,15 +161,14 @@ const password = (req, res) => {
           to: email,
           subject: 'Your OTP Code',
           text: `Your 4-digit PIN code is: ${resetToken}`,
-          // html:,
         };
         return transporter.sendMail(mailOptions)
           .then((emailResult) => {
             console.log(emailResult);
-            User.updateOne({ email }, { $set: { otp: resetToken } })
+            userModel.updateOne({ email }, { $set: { otp: resetToken } })
               .then(result => {
                 console.log(result);
-                res.status(200).json({ message: 'Email sent successful', status: true });
+                res.status(200).json({ message: 'Email sent successful', status: true, email: email });
               }).catch(() => {
                 res.status(500).json({ message: 'Error occur while updating Model', status: false });
               });
@@ -229,19 +189,21 @@ const password = (req, res) => {
 
 const resetPassword = (req, res) => {
   const { email, otp, newPassword } = req.body;
-
-  if (!email || !otp || !newPassword) {
-    return res.status(400).json({ message: 'Missing required data' });
-  }
-  console.log('missing data');
   console.log(email, otp, newPassword);
 
-  User.findOne({ email, otp })
+  if (!email || !otp || !newPassword) {
+    console.log('missing data');
+    return res.status(400).json({ message: 'Missing required data' });
+  }
+
+  userModel.findOne({ email, otp })
     .then(async (user) => {
       if (!user) {
+        console.log('user not found');
+        
         return res.status(500).json({ message: 'User not found' });
       }
-      console.log('is ok');
+      
       const hashPassword = await bcryptjs.hash(newPassword, 10);
       userModel.updateOne({ _id: user._id }, { password: hashPassword })
         .then(user => {

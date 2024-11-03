@@ -9,11 +9,8 @@ const verifyToken = require('../middleware/verifyToken');
 
 const checkout = async (req, res) => {
     const { user, cart } = req.body;
-    console.log(user);
-    console.log( cart);
 
     try {
-        // Step 1: Find or create the user in the database
         let existingUser = await User.findOne({ email: user.email });
         if (!existingUser) {
             existingUser = new User({
@@ -49,24 +46,10 @@ const addToCart = async (req, res) => {
     console.log(details);
 
     try {
-        // let product = data.find(prod => prod._id === productId);
-        // / Fetch the product from the database
-        // let product = await Product.findById(productId);
-        // if (!product) {
-        //     return res.status(404).json({ message: 'Product not found' });
-        // }
-
-        // if (product.availableQuantity < quantity) {
-        //     return res.status(400).json({ message: 'Insufficient stock' });
-        // }
-
-
         let product = await Product.findById(productId);
-
         if (!product) {
             // If the product is not found, you can add some default or placeholder values instead
             console.log('Product not found, adding with default values');
-
             product = {
                 _id: productId,
                 name: 'Unknown Product',
@@ -115,7 +98,7 @@ const addToCart = async (req, res) => {
     }
 };
 
-// Get Cart Function
+// Not used
 const getCart = async (req, res) => {
     const { userId } = req.params;
     try {
@@ -139,6 +122,7 @@ const getCart = async (req, res) => {
     }
 };
 
+// Not used
 const increment = async () => {
     const { userId, productId } = req.body;
     try {
