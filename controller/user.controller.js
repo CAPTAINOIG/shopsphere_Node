@@ -33,8 +33,6 @@ const transporter = nodemailer.createTransport({
 
 const Captain =
   "https://res.cloudinary.com/dbp6ovv7b/image/upload/v1715783819/tvf5apwj5bwmwf2qjfhh.png";
-
-
   const newsletter = (req, res) => {
     let form = new Newsletter(req.body)
     form.save()
@@ -94,11 +92,9 @@ const Captain =
 
 
 const userLogin = async (req, res) => {
-  console.log(req.body);
   const { password, email } = req.body;
   try {
     const user = await userModel.findOne({ email });
-
     if (user) {
       const secrete = process.env.SECRET;
       user.validatePassword(password, (err, same) => {
@@ -107,7 +103,6 @@ const userLogin = async (req, res) => {
         } else {
           if (same) {
             const token = jwt.sign({ email }, secrete, { expiresIn: "10h" });
-            // console.log(token);
             res.status(200).json({ message: "User signed in successfully", status: true, token, user });
           } else {
             res.status(401).json({ message: "Wrong password, please type the correct password", status: false });
@@ -131,7 +126,6 @@ const getDashboard = async (req, res) => {
       if (!userDetail) {
           return res.status(404).json({ status: false, message: "User not found" });
       }
-
       res.json({ status: true, message: "Welcome to the Dashboard", userDetail });
   } catch (error) {
       console.error(error);
@@ -145,10 +139,7 @@ const password = (req, res) => {
   const resetToken = generating();
   const expirationDate = new Date();
   expirationDate.setHours(expirationDate.getHours() + 24); 
-
   tokenStorage.set(resetToken, { email, expires: expirationDate, pin: generating() });
-  console.log(email);
-
   userModel.findOne({ email })
     .then((result) => {
       if (result === null) {
@@ -164,7 +155,6 @@ const password = (req, res) => {
         };
         return transporter.sendMail(mailOptions)
           .then((emailResult) => {
-            console.log(emailResult);
             userModel.updateOne({ email }, { $set: { otp: resetToken } })
               .then(result => {
                 console.log(result);
@@ -179,8 +169,6 @@ const password = (req, res) => {
           });
       }
     }).catch((err) => {
-      console.log(err);
-      console.error('Error in sendResetEmail:', err);
       res.status(500).json({ message: '❌ Internal server error', status: false });
     });
 
@@ -189,21 +177,14 @@ const password = (req, res) => {
 
 const resetPassword = (req, res) => {
   const { email, otp, newPassword } = req.body;
-  console.log(email, otp, newPassword);
-
   if (!email || !otp || !newPassword) {
-    console.log('missing data');
     return res.status(400).json({ message: 'Missing required data' });
   }
-
   userModel.findOne({ email, otp })
     .then(async (user) => {
       if (!user) {
-        console.log('user not found');
-        
         return res.status(500).json({ message: 'User not found' });
       }
-      
       const hashPassword = await bcryptjs.hash(newPassword, 10);
       userModel.updateOne({ _id: user._id }, { password: hashPassword })
         .then(user => {
