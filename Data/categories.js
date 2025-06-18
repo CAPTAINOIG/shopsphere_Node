@@ -34,7 +34,7 @@ const data = [
     discountPercentage: Math.round(((999 - 899) / 999) * 100),
     category: "Smartphones",
     availableQuantity: 10,
-    // isNewArrival: false,
+    isNewArrival: false,
     isPopular: false,
     reviews: 156,
     brand: "DREAM COMFORT",
@@ -182,7 +182,7 @@ const data = [
     description:
       "Experience the next level of health monitoring with the Apple Watch Series 7. Equipped with a larger and more durable display, this smartwatch provides seamless access to essential health features, including heart rate monitoring, ECG, and blood oxygen measurement. Its sleek design and improved performance make it a perfect companion for your daily activities and workouts. Take advantage of our special offer to get it at a discounted price and stay ahead in health and technology.",
     discountPercentage: Math.round(((399 - 359) / 399) * 100),
-    category: "Wearables",
+    category: "Accessories",
     availableQuantity: 10,
     isNewArrival: false,
     isPopular: false,
@@ -259,15 +259,15 @@ const data = [
     discountPercentage: Math.round(((199 - 179) / 199) * 100),
     category: "Clothing",
     availableQuantity: 10,
-    isNewArrival: true,
-    isPopular: true,
+    isNewArrival: false,
+    isPopular: false,
     reviews: 156,
     brand: "DREAM COMFORT",
     colors: ["blush pink", "sage green", "navy stripe", "ivory"],
     sizes: ["XS", "S", "M", "L", "XL"],
     images: {
-      front: "https://unsplash.com/photos/assorted-color-folded-shirts-on-wooden-panel-tWOz2_EK5EQ",
-      back: "https://media.istockphoto.com/id/865723980/photo/back-view-young-bearded-hipster-man-dressed-in-white-t-shirt-and-sunglasses-is-stands-on-city.jpg?s=1024x1024&w=is&k=20&c=8PpJG4ZOF-epu3WqfQZh8z7OYVEU2m6r6tP5XKJ5688=",
+      front: "https://media.istockphoto.com/id/865723980/photo/back-view-young-bearded-hipster-man-dressed-in-white-t-shirt-and-sunglasses-is-stands-on-city.jpg?s=1024x1024&w=is&k=20&c=8PpJG4ZOF-epu3WqfQZh8z7OYVEU2m6r6tP5XKJ5688=",
+      back: "https://unsplash.com/photos/assorted-color-folded-shirts-on-wooden-panel-tWOz2_EK5EQ",
       side:
         "https://media.istockphoto.com/id/972560088/photo/young-athletic-guy-wearing-blank-white-t-shirt-studio-close-up-empty-wall.jpg?s=1024x1024&w=is&k=20&c=Y1SNzZW8bD7hzhEljCVIrqOrjkx-PbQOZCNE5M99W0Q=",
       additional:
@@ -360,8 +360,8 @@ const data = [
     discountPercentage: Math.round(((59 - 49) / 59) * 100),
     category: "Clothing",
     availableQuantity: 10,
-    isNewArrival: true,
-    isPopular: true,
+   isNewArrival: false,
+    isPopular: false,
     reviews: 156,
     brand: "DREAM COMFORT",
     colors: ["blush pink", "sage green", "navy stripe", "ivory"],
@@ -1017,7 +1017,7 @@ const data = [
     description:
       "Elevate your winter wardrobe with this luxurious wool overcoat. Crafted from 100% premium wool, this timeless piece features a classic tailored fit, double-breasted design, and sophisticated lapels. The rich texture and elegant silhouette make it perfect for both business and formal occasions. Available in classic colors with a fully lined interior for ultimate comfort and warmth.",
     discountPercentage: Math.round(((389 - 299) / 389) * 100),
-    category: "Outerwear",
+    category: "clothing",
     availableQuantity: 15,
     isNewArrival: true,
     isPopular: true,
@@ -1069,7 +1069,7 @@ const data = [
     description:
       "Experience the finest in denim craftsmanship with our Japanese selvedge jeans. Made from premium 14oz Okayama cotton denim, these jeans feature the coveted selvedge edge detail and will develop a unique patina over time. The slim-straight fit offers modern style with vintage authenticity. Hand-finished details and copper rivets complete this artisanal piece that only gets better with age.",
     discountPercentage: Math.round(((298 - 249) / 298) * 100),
-    category: "Denim",
+    category: "clothing",
     availableQuantity: 22,
     isNewArrival: false,
     isPopular: true,
@@ -1095,7 +1095,7 @@ const data = [
     description:
       "Indulge in luxury with our 100% pure cashmere turtleneck sweater. Sourced from the finest Mongolian cashmere, this ultra-soft sweater provides unparalleled warmth and comfort. The classic turtleneck design features a relaxed fit that's perfect for layering or wearing alone. The timeless silhouette and neutral colors make it a versatile wardrobe staple that pairs beautifully with everything from tailored trousers to flowing skirts.",
     discountPercentage: Math.round(((189 - 149) / 189) * 100),
-    category: "Knitwear",
+    category: "clothing",
     availableQuantity: 18,
     isNewArrival: true,
     isPopular: true,
@@ -1147,7 +1147,7 @@ const data = [
     description:
       "Command attention with this impeccably tailored structured blazer. Featuring sharp lapels, a nipped-in waist, and sophisticated button details, this blazer is designed to empower and inspire confidence. The premium wool blend fabric provides structure while maintaining comfort throughout the day. Whether worn with matching trousers for a suit look or paired with jeans for smart-casual elegance, this blazer is a versatile power piece.",
     discountPercentage: Math.round(((278 - 198) / 278) * 100),
-    category: "Blazers",
+    category: "clothing",
     availableQuantity: 14,
     isNewArrival: true,
     isPopular: true,
@@ -1199,7 +1199,7 @@ const data = [
     description:
       "Experience next-level comfort with our premium merino wool base layer. This ultra-soft, naturally odor-resistant piece regulates temperature in all conditions, keeping you warm in winter and cool in summer. The seamless construction and athletic fit make it perfect for layering under any outfit. Ethically sourced from New Zealand merino sheep, this sustainable piece is as kind to the planet as it is to your skin.",
     discountPercentage: 0,
-    category: "Activewear",
+    category: "clothing",
     availableQuantity: 30,
     isNewArrival: true,
     isPopular: false,
@@ -1209,9 +1209,9 @@ const data = [
     colors: ["charcoal", "cream", "forest", "navy"],
     sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     images: {
-      front:
+      front: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=800&fit=crop",
+      back:
         "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=800&fit=crop",
-      back: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=800&fit=crop",
       side: "https://images.unsplash.com/photo-1583743814966-8936f37f7421?w=600&h=800&fit=crop",
       additional:
         "https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=600&h=800&fit=crop",
@@ -1225,7 +1225,7 @@ const data = [
     description:
       "Make a bold statement with this luxurious gold chain necklace. Crafted from 18k gold-plated sterling silver, this substantial piece features perfectly interlocked links that catch the light beautifully. The adjustable length allows for versatile styling - wear it long for a dramatic look or doubled up for layered sophistication. Hypoallergenic and tarnish-resistant, this investment piece will be treasured for years to come.",
     discountPercentage: Math.round(((234 - 189) / 234) * 100),
-    category: "Jewelry",
+    category: "Accessories",
     availableQuantity: 16,
     isNewArrival: true,
     isPopular: true,
@@ -1303,7 +1303,7 @@ const data = [
     description:
       "Elevate your professional wardrobe with these impeccably tailored high-waisted trousers. Crafted from a premium wool-blend fabric with a subtle stretch, these pants feature a flattering high-rise fit, sharp front creases, and elegant wide legs. The sophisticated silhouette elongates the figure while providing all-day comfort. Perfect for the modern woman who values both style and substance in her workwear.",
     discountPercentage: Math.round(((189 - 149) / 189) * 100),
-    category: "Trousers",
+    category: "clothing",
     availableQuantity: 24,
     isNewArrival: true,
     isPopular: true,
@@ -1313,9 +1313,9 @@ const data = [
     colors: ["black", "charcoal", "navy", "camel"],
     sizes: ["XS", "S", "M", "L", "XL"],
     images: {
-      front:
+      front: "https://images.unsplash.com/photo-1571513722275-4b41940f54b8?w=600&h=800&fit=crop",
+      back:
         "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&h=800&fit=crop",
-      back: "https://images.unsplash.com/photo-1571513722275-4b41940f54b8?w=600&h=800&fit=crop",
       side: "https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=600&h=800&fit=crop",
       additional:
         "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop",
@@ -1355,7 +1355,7 @@ const data = [
     description:
       "Experience Swiss precision with this minimalist timepiece that embodies elegant simplicity. The clean dial features subtle hour markers and Swiss quartz movement for unparalleled accuracy. The genuine leather strap is hand-stitched and develops character over time. Water-resistant to 50 meters with a sapphire crystal face, this watch is built to last generations while maintaining its understated sophistication.",
     discountPercentage: 0,
-    category: "Watches",
+    category: "clothing",
     availableQuantity: 8,
     isNewArrival: true,
     isPopular: true,
@@ -1381,10 +1381,10 @@ const data = [
     description:
       "Indulge in luxurious comfort with this organic cotton pajama set. Made from GOTS-certified organic cotton with a silky-smooth feel, this set includes a button-front top with notched collar and matching elasticated pants. The breathable fabric regulates temperature for optimal sleep comfort, while the classic design offers timeless elegance. Available in soothing colors that promote relaxation and peaceful sleep.",
     discountPercentage: Math.round(((125 - 95) / 125) * 100),
-    category: "Sleepwear",
+    category: "clothing",
     availableQuantity: 28,
-    isNewArrival: true,
-    isPopular: true,
+    isNewArrival: false,
+    isPopular: false,
     rating: 4.7,
     reviews: 156,
     brand: "DREAM COMFORT",
@@ -1407,7 +1407,7 @@ const data = [
     description:
       "Make an elegant statement with these contemporary pearl earrings. Featuring lustrous freshwater pearls in an asymmetrical design, these earrings offer a modern twist on classic pearl jewelry. The sterling silver posts are hypoallergenic and comfortable for all-day wear. Each pearl is hand-selected for its exceptional quality and natural beauty, making these earrings a sophisticated addition to any jewelry collection.",
     discountPercentage: Math.round(((167 - 134) / 167) * 100),
-    category: "Jewelry",
+    category: "Accessories",
     availableQuantity: 19,
     isNewArrival: true,
     isPopular: true,
