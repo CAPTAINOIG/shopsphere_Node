@@ -127,7 +127,7 @@ const getProductByCategoryOrSection = (req, res) => {
   const { category, section } = req.params;
   let products = data;
   if (category) {
-    products = products.filter((item) => item.category === category);
+   products = products.filter((item) => item.category === category);
   }
   if (section) {
     products = products.filter((item) => item.section === section);

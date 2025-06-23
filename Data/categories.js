@@ -1477,6 +1477,71 @@ const data = [
         "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&h=800&fit=crop",
     },
   },
+  {
+  id: 59,
+  name: "Summer Collection Bundle",
+  category: "onSale",
+  price: 199,
+  originalPrice: 350,
+  image: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&h=800&fit=crop",
+  images: {
+    front: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&h=800&fit=crop",
+    back: "https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?w=600&h=800&fit=crop",
+    side: "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=600&h=800&fit=crop",
+    additional: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=600&h=800&fit=crop"
+  },
+  rating: 4.8,
+  reviews: 42,
+  discount: 43,
+  availableQuantity: 10,
+  description: "Complete summer wardrobe with 5 essential pieces at an unbeatable price",
+  isHot: true,
+  timeLeft: "12h 45m"
+},
+{
+  id: 60,
+  name: "Designer Handbag Special",
+  category: "onSale",
+  brand: "LUXURY DEALS",
+  price: 299,
+  originalPrice: 599,
+  image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&h=800&fit=crop",
+  images: {
+    front: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&h=800&fit=crop",
+    back: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=800&fit=crop",
+    side: "https://images.unsplash.com/photo-1540568885012-9f1b3d197e0f?w=600&h=800&fit=crop",
+    additional: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=600&h=800&fit=crop"
+  },
+  rating: 4.9,
+  reviews: 28,
+  discount: 50,
+  availableQuantity: 10,
+  description: "Limited-time offer on our best-selling designer handbag collection",
+  isHot: true,
+  timeLeft: "1d 6h"
+},
+{
+  id: 61,
+  name: "Athletic Footwear Clearance",
+  category: "onSale",
+  brand: "SPORT & STYLE",
+  price: 89,
+  originalPrice: 150,
+  image: "https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=600&h=800&fit=crop",
+  images: {
+    front: "https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=600&h=800&fit=crop",
+    back: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=800&fit=crop",
+    side: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=800&fit=crop",
+    additional: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=600&h=800&fit=crop"
+  },
+  rating: 4.7,
+  reviews: 63,
+  discount: 41,
+  availableQuantity: 10,
+  description: "Premium performance shoes at clearance prices - limited stock available",
+  isHot: true,
+  timeLeft: "8h 30m"
+}
 ];
 
 module.exports = data;
